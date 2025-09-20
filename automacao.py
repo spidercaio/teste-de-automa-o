@@ -1,0 +1,43 @@
+import pyautogui as pg
+import pandas as pd
+import time
+
+tabela = pd.read_csv('produtos.csv')
+
+pg.press('win')
+time.sleep(3)
+pg.write('chrome')
+time.sleep(2)
+pg.press('enter')
+time.sleep(7)
+pg.click(x=445, y=64)
+pg.write('https://dlp.hashtagtreinamentos.com/python/intensivao/login')
+pg.press('enter')
+time.sleep(7)
+pg.click(x=470, y=404)
+pg.write('peterparker23@gmail.com')
+pg.press('tab')
+pg.write('spiderdope123')
+pg.press('enter')
+time.sleep(5)
+for linha in tabela.index:
+    pg.click(x=572, y=293)
+    pg.write(tabela.loc[linha,'codigo'])
+    pg.press('tab')
+    pg.write(tabela.loc[linha, 'marca'])
+    pg.press('tab')
+    pg.write(tabela.loc[linha, 'tipo'])
+    pg.press('tab') 
+    pg.write(str(tabela.loc[linha, 'categoria']))
+    pg.press('tab')
+    pg.write(str(tabela.loc[linha, 'preco_unitario']))
+    pg.scroll(-200)
+    pg.press('tab')
+    pg.write(str(tabela.loc[linha, 'custo']))
+    pg.press('tab')
+    if not pd.isna(tabela.loc[linha, 'obs']):
+        pg.write(str(tabela.loc[linha, 'obs']))
+    pg.press('tab')
+    pg.press('enter')
+    time.sleep(2)
+    pg.scroll(5000)
